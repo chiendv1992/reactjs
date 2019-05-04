@@ -12,9 +12,11 @@ class Product extends Component {
 								16.000.000 VND
 							</p>
 						</div>
-					</div>
+                        <button type="button"> Add Cart</button>
+
+                    </div>
 				</div>
-				<button type="button"> Add Cart</button>
+
 			</div>
 
         );
