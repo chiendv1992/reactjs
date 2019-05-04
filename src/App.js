@@ -1,81 +1,62 @@
 import React,{Component} from 'react';
 import './App.css';
 import Menu from "./component/Menu";
-import Product from "./component/Product";
+import Productprops from "./component/Productprops";
 
 class App extends Component {
-    showstatus(product)
-    {
-        if (product.status){
-            return <h3>
-                <div className='ml-30'>
-                    status : { product.status ? 'Active' : 'Pending'}
-                </div>
-            </h3>
-        }
+    onClick(text){
+        console.log(text);
+    }
+    onClick2(text){
+        console.log(text);
     }
     render()
     {
-        // var a = 5;
-        // var b = 7;
-        // var name = 'chiendv6948';
-        //
-        // var product = {
-        //     id : 1,
-        //     name : 'ip 7',
-        //     price : 15000000,
-        //     status : true
-        // };
-
-        var user = [
+        var product = [
             {
-                id : 1,
-                name : 'aa1',
-                aeg : 12
+                id : '1',
+                name : 'ip6s',
+                price : 12000000,
+                status : true
             },
             {
-                id : 2,
-                name : 'aa2',
-                aeg : 12
+                id : '2',
+                name : '6s plus',
+                price : 14500000,
+                status : true
             },
             {
-                id : 3,
-                name : 'aa3',
-                aeg : 12
-            }
+                id : '3',
+                name : 'ip6s',
+                price : 14000000,
+                status : false
+            },
         ];
-        //
-        var element = user.map((user, index) => {
-            // key co the dung user.id
-            return <div key={index}>
-                <h2>
-                    name : {user.name}
-                </h2>
-            </div>
-    });
+        let elements = product.map((product,index) => {
+            return  <Productprops
+                key = {index}
+                price = { product.price }
+            >
+                { product.name }
+            </Productprops>
+        });
         return (
             <div >
                 <div className="App">
-                    <Menu />                                  
+                    <Menu />
                 </div>
-                {/*<div className='ml-30'>*/}
-                {/*    a : {a}*/}
-                {/*    <h3>name : {name}</h3>*/}
-                {/*    tong {a + b}*/}
-                {/*</div>*/}
-
-                {/*<div className='ml-30'>*/}
-                {/*    id  : { product.id } <br />*/}
-                {/*    name : { product.name } <br />*/}
-                {/*    price : { product.price } VND <br />*/}
-                {/*    status : { product.status ? 'Active' : 'Pending'}*/}
-                {/*</div>*/}
-
-                {/*<div className='ml-30'>*/}
-                {/*    { this.showstatus(product) }*/}
-                {/*</div>*/}
-                <div>
-                    {element}
+                <div className='container'>
+                    <div className='row'>
+                        <div className='row'>
+                            <div className="col-xs-12">
+                                {elements}
+                            </div>
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <button className='btn btn-warning' onClick={this.onClick("sssaaa")}>Click me!</button>
+                                <button className='btn btn-warning' onClick={() => this.onClick2("ssa")}>Click me2!</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
