@@ -4,11 +4,21 @@ import Menu from "./component/Menu";
 import Productprops from "./component/Productprops";
 
 class App extends Component {
+    constructor(props){
+        super(props);
+        this.onAddProduct = this.onAddProduct.bind(this);
+
+    }
     onClick(text){
         console.log(text);
     }
     onClick2(text){
         console.log(text);
+    }
+
+    onAddProduct()
+    {
+        console.log(this.refs.name.value);
     }
     render()
     {
@@ -48,6 +58,22 @@ class App extends Component {
                 <div className='container'>
                     <div className='row'>
                         <div className='row'>
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div className="panel panel-danger">
+                                        <div className="panel-danger">
+                                            Basic panel example
+                                        </div>
+                                    </div>
+                                    <div className="panel panel-default">
+                                        <div className="form-group">
+                                            <label>Name</label>
+                                            <input type="text" name="" id="input" className="form-control" ref="name" />
+                                            <button type="button" name="" id="sub" onClick={this.onAddProduct}>Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="col-xs-12">
                                 {elements}
                             </div>
