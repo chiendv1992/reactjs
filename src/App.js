@@ -1,82 +1,57 @@
 import React,{Component} from 'react';
 import './App.css';
 import Menu from "./component/Menu";
-import Product from "./component/Product";
+import Productprops from "./component/Productprops";
 
 class App extends Component {
-    showstatus(product)
-    {
-        if (product.status){
-            return <h3>
-                <div className='ml-30'>
-                    status : { product.status ? 'Active' : 'Pending'}
-                </div>
-            </h3>
-        }
-    }
     render()
     {
-        // var a = 5;
-        // var b = 7;
-        // var name = 'chiendv6948';
-        //
-        // var product = {
-        //     id : 1,
-        //     name : 'ip 7',
-        //     price : 15000000,
-        //     status : true
-        // };
-
-        var user = [
-            {
-                id : 1,
-                name : 'aa1',
-                aeg : 12
-            },
-            {
-                id : 2,
-                name : 'aa2',
-                aeg : 12
-            },
-            {
-                id : 3,
-                name : 'aa3',
-                aeg : 12
+        var product = [
+        {
+            id : '1',
+            name : 'ip6s',
+            price : 12000000,
+            status : true
+        },
+        {
+            id : '2',
+            name : '6s plus',
+            price : 14500000,
+            status : false
+        },
+        {
+            id : '3',
+            name : 'ip6s',
+            price : 14000000,
+            status : false
+        },
+    ];
+        let elements = product.map((product,index) => {
+            let result='';
+            if (product.status){
+                result = <Productprops
+                    key = {product.index}
+                    price = { product.price }
+                >
+                    { product.name }
+                </Productprops>
             }
-        ];
-        //
-        var element = user.map((user, index) => {
-            // key co the dung user.id
-            return <div key={index}>
-                <h2>
-                    name : {user.name}
-                </h2>
-            </div>
-    });
+            return  result;
+        });
         return (
             <div >
                 <div className="App">
-                    <Menu />                                  
+                    <Menu />
                 </div>
-                {/*<div className='ml-30'>*/}
-                {/*    a : {a}*/}
-                {/*    <h3>name : {name}</h3>*/}
-                {/*    tong {a + b}*/}
-                {/*</div>*/}
-
-                {/*<div className='ml-30'>*/}
-                {/*    id  : { product.id } <br />*/}
-                {/*    name : { product.name } <br />*/}
-                {/*    price : { product.price } VND <br />*/}
-                {/*    status : { product.status ? 'Active' : 'Pending'}*/}
-                {/*</div>*/}
-
-                {/*<div className='ml-30'>*/}
-                {/*    { this.showstatus(product) }*/}
-                {/*</div>*/}
-                <div>
-                    {element}
-                </div>
+               <div className='container'>
+                   <div className='row'>
+                       <div className='row'>
+                           <div className="col-xs-12">
+                               {elements}
+                           </div>
+                       </div>
+                   </div>
+               </div>
             </div>
         );
     }
