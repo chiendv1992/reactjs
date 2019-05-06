@@ -4,51 +4,60 @@ import Menu from "./component/Menu";
 import Productprops from "./component/Productprops";
 
 class App extends Component {
+    // viết trong constructor
     constructor(props){
         super(props);
-        this.onAddProduct = this.onAddProduct.bind(this);
+        this.state = {
+            product: [
+                {
+                    id: '1',
+                    name: 'ip6s',
+                    price: 12000000,
+                    status: true
+                },
+                {
+                    id: '2',
+                    name: '6s plus',
+                    price: 14500000,
+                    status: true
+                },
+                {
+                    id: '3',
+                    name: 'ip6s',
+                    price: 14000000,
+                    status: false
+                },
+            ],
+            isActive : true
+        };
+        this.onSetState = this.onSetState.bind(this);
+    }
 
-    }
-    onClick(text){
-        console.log(text);
-    }
-    onClick2(text){
-        console.log(text);
+    onSetState(){
+        if (this.state.isActive == true) {
+            this.setState(
+            {
+                isActive:false
+            });
+        }
+        else{
+            this.setState({
+                isActive:true
+            });
+        }
     }
 
-    onAddProduct()
-    {
-        console.log(this.refs.name.value);
-    }
     render()
     {
-        var product = [
-            {
-                id : '1',
-                name : 'ip6s',
-                price : 12000000,
-                status : true
-            },
-            {
-                id : '2',
-                name : '6s plus',
-                price : 14500000,
-                status : true
-            },
-            {
-                id : '3',
-                name : 'ip6s',
-                price : 14000000,
-                status : false
-            },
-        ];
-        let elements = product.map((product,index) => {
-            return  <Productprops
-                key = {index}
-                price = { product.price }
-            >
-                { product.name }
-            </Productprops>
+        //gọi state vào
+        let elements = this.state.product.map((product,index) => {
+            return  <tr key={ product.id }>
+                        <td>{ index }</td>
+                        <td>{ product.name }</td>
+                        <td>
+                            <span className="label label-success">{product.name}</span>
+                        </td>
+                    </tr>
         });
         return (
             <div >
@@ -62,25 +71,25 @@ class App extends Component {
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div className="panel panel-danger">
                                         <div className="panel-danger">
-                                            Basic panel example
+                                            State
                                         </div>
                                     </div>
-                                    <div className="panel panel-default">
-                                        <div className="form-group">
-                                            <label>Name</label>
-                                            <input type="text" name="" id="input" className="form-control" ref="name" />
-                                            <button type="button" name="" id="sub" onClick={this.onAddProduct}>Save</button>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
-                            <div className="col-xs-12">
-                                {elements}
-                            </div>
-                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <button className='btn btn-warning' onClick={this.onClick("sssaaa")}>Click me!</button>
-                                <button className='btn btn-warning' onClick={() => this.onClick2("ssa")}>Click me2!</button>
-                            </div>
+                            <table className='table table-bordered table-hover'>
+                                <tbody>
+                                    <tr>
+                                        <td>stt</td>
+                                        <td>ten</td>
+                                        <td>giá</td>
+                                    </tr>
+                                    { elements }
+                                </tbody>
+                            </table>
+                            <button type="button" className="btn btn-default" onClick = {this.onSetState}>
+                                Active : { this.state.isActive === true ? "true":'false'}
+                            </button>
                         </div>
                     </div>
                 </div>
